@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const weatherRoutes = require("./routes/weatherRoutes");
 
 const express = require("express");

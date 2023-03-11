@@ -3,6 +3,7 @@ dotenv.config();
 
 const weatherRoutes = require("./routes/weatherRoutes");
 const newsRoutes = require("./routes/newsRoutes");
+const twitterRoutes = require("./routes/twitterRoutes");
 
 const express = require("express");
 const app = express();
@@ -18,6 +19,7 @@ app.get("/api", (req, res) => {
 
 app.use("/api/weather", weatherRoutes);
 app.use("/api/news", newsRoutes);
+app.use("/api/twitter", twitterRoutes);
 
 PORT = process.env.PORT || 3000;
 

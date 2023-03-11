@@ -1,0 +1,17 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    /* background: #000; */
+}
+
+.bodyPane{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    background: #1e293b;
+    overflow:hidden;
+    width: auto;
+    height: 90%;
+}

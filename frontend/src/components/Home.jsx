@@ -1,6 +1,8 @@
 import React from "react";
 import "./Home.css";
 import Weatherpan from "./Pans/WeatherPan/Weatherpan";
+import TodoPan from "./Pans/TodoPan/TodoPan";
+
 function Home() {
   return (
     <div className="container">
@@ -11,7 +13,9 @@ function Home() {
         <div className="leftPane">
           <Weatherpan />
         </div>
-        <div className="midPane">mid</div>
+        <div className="midPane">
+          <TodoPan />
+        </div>
         <div className="rightPane">right</div>
       </div>
     </div>

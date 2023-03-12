@@ -8,7 +8,9 @@ function TodoPan() {
     "C",
     "D",
   ]);
-  useEffect(() => {}, [default_items]);
+  useEffect(() => {
+    console.log("changed");
+  }, [default_items]);
   return (
     <div className="weatherCard card text-neutral-content shadow-xl w-auto">
       <DragDropList

@@ -6,6 +6,8 @@ import "./DragDropList.css";
 function DragDropList(props) {
   // const [itemList, setItemList] = useState(props.items);
 
+  const [addBtnUsed, setAddBtnUsed] = useState(false);
+
   const handleDrop = (droppedItem) => {
     // if outside the Droppable context
     if (!droppedItem.destination) return;
@@ -25,8 +27,25 @@ function DragDropList(props) {
     var updatedList = [...props.default_items];
 
     updatedList.splice(index, 1);
-    console.log(updatedList);
     props.setDefault_items(updatedList);
+  };
+
+  const handleChange = (index, newValue) => {
+    var updatedList = [...props.default_items];
+
+    updatedList[index] = newValue;
+
+    props.setDefault_items(updatedList);
+  };
+
+  const handleAddTask = () => {
+    //if the button clicked/used (means next click should submit the task)
+    if (!addBtnUsed) {
+      props.setDefault_items([
+        "Double click to edit...",
+        ...props.default_items,
+      ]);
+    }
   };
 
   return (
@@ -41,12 +60,17 @@ function DragDropList(props) {
                 ref={provided.innerRef}
               >
                 {props.default_items.map((item, index) => (
-                  <Draggable key={item} draggableId={item} index={index}>
+                  <Draggable
+                    key={item + index}
+                    draggableId={String(index)}
+                    index={index}
+                  >
                     {(provided) => (
                       <ListItem
                         provided={provided}
                         value={item}
                         handleDelete={handleDelete}
+                        handleChange={handleChange}
                         index={index}
                       ></ListItem>
                     )}
@@ -58,7 +82,10 @@ function DragDropList(props) {
           )}
         </Droppable>
       </DragDropContext>
-      <button className="btn btn-circle btn-ghost p-0 m-0 relative bottom-[-8px]">
+      <button
+        className="btn btn-circle btn-ghost p-0 m-0 relative bottom-[-8px]"
+        onClick={handleAddTask}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-10 w-10"

@@ -7,6 +7,7 @@ const weatherRoutes = require("./routes/weatherRoutes");
 const newsRoutes = require("./routes/newsRoutes");
 const twitterRoutes = require("./routes/twitterRoutes");
 const authRoutes = require("./routes/authRoutes");
+const todoListRoutes = require("./routes/todoListRoutes");
 
 //DB connecting
 const connect_DB = require("./config/db");
@@ -29,6 +30,7 @@ app.use("/api/weather", weatherRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/twitter", twitterRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/todo-list", todoListRoutes);
 
 PORT = process.env.PORT || 3000;
 

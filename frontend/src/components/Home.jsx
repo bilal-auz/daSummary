@@ -9,14 +9,15 @@ function Home() {
       <div className="headPane">
         <h1>DaSummary</h1>
       </div>
-      <div className="bodyPane flex flex-row space-x-4 rounded-lg h-full w-full">
-        <div className="leftPane">
+      <div className="bodyPane flex flex-row flex-wrap justify-center space-x-4 rounded-lg h-full w-full">
+        <div className="leftPane w-[350px]">
           <Weatherpan />
         </div>
-        <div className="midPane">
+        <div className="midPane w-[350px] flex flex-col justify-between">
+          <h1>Hello</h1>
           <TodoPan />
         </div>
-        <div className="rightPane">right</div>
+        <div className="rightPane w-[350px]">right</div>
       </div>
     </div>
   );

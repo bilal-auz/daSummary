@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ListItem from "./ListItem";
+import "./DragDropList.css";
 
 function DragDropList(props) {
   // const [itemList, setItemList] = useState(props.items);
@@ -29,33 +30,35 @@ function DragDropList(props) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative p-7 w-[350px] max-h-[400px]">
       <DragDropContext onDragEnd={handleDrop}>
         <Droppable droppableId="list-container">
           {(provided) => (
-            <div
-              className="list-container p-8 w-[350px] max-h-[400px]"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {props.default_items.map((item, index) => (
-                <Draggable key={item} draggableId={item} index={index}>
-                  {(provided) => (
-                    <ListItem
-                      provided={provided}
-                      value={item}
-                      handleDelete={handleDelete}
-                      index={index}
-                    ></ListItem>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
+            <div className="overflow-y-auto h-[340px] pr-1 m-0">
+              <div
+                className="list-container "
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {props.default_items.map((item, index) => (
+                  <Draggable key={item} draggableId={item} index={index}>
+                    {(provided) => (
+                      <ListItem
+                        provided={provided}
+                        value={item}
+                        handleDelete={handleDelete}
+                        index={index}
+                      ></ListItem>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
             </div>
           )}
         </Droppable>
       </DragDropContext>
-      <button className="btn btn-circle btn-ghost p-0 m-0 relative bottom-[-25px]">
+      <button className="btn btn-circle btn-ghost p-0 m-0 relative bottom-[-8px]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-10 w-10"

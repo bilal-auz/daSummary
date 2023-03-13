@@ -3,7 +3,7 @@ import React from "react";
 function ListItem({ provided, value, handleDelete, index }) {
   return (
     <div
-      className="item-container flex flex-row items-center justify-start w-auto h-8 my-2 p-3 rounded bg-[#1e293b] text-smoke"
+      className="item-container flex flex-row items-center justify-start w-auto min-h-8 h-auto mb-2 p-3 rounded bg-[#1e293b] text-smoke"
       ref={provided.innerRef}
       {...provided.dragHandleProps}
       {...provided.draggableProps}

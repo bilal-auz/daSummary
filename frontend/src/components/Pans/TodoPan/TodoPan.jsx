@@ -4,9 +4,14 @@ import DragDropList from "./DragDropList";
 function TodoPan() {
   const [default_items, setDefault_items] = useState([
     "Lorem ipsum dolor sit amet consectetur adipisicing",
-    "B",
-    "C",
-    "D",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
   ]);
   useEffect(() => {
     console.log("changed");

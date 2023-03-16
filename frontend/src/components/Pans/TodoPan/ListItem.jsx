@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function ListItem({ provided, value, handleDelete, index, handleChange }) {
   const [toggled, setToggled] = useState(false);
   const [newValue, setNewValue] = useState(value);
+  const [checked, setChecked] = useState(false);
 
   const toggleInput = () => {
     setToggled(!toggled);
@@ -24,6 +25,10 @@ function ListItem({ provided, value, handleDelete, index, handleChange }) {
     setNewValue(event.target.value);
   };
 
+  const handleChecked = () => {
+    //handle checking and update the list in databse if connected
+    setChecked(!checked);
+  };
   return (
     <div
       className="item-container flex flex-row items-center justify-start w-auto min-h-8 h-auto mb-2 p-3 rounded bg-[#1e293b] text-smoke"
@@ -33,11 +38,15 @@ function ListItem({ provided, value, handleDelete, index, handleChange }) {
     >
       <input
         type="checkbox"
-        checked="checked"
+        checked={checked}
         className="checkbox checkbox-xs mr-3 tex"
+        onChange={handleChecked}
       />
       {!toggled ? (
-        <p className="mr-5" onDoubleClick={toggleInput}>
+        <p
+          className={checked ? "mr-5 line-through decoration-1" : "mr-5"}
+          onDoubleClick={toggleInput}
+        >
           {newValue}
         </p>
       ) : (

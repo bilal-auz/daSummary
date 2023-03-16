@@ -3,6 +3,6 @@ const router = express.Router();
 
 const { getHashtags } = require("../controllers/twitterController");
 
-router.get("/getTwitterHashtags", getHashtags);
+router.post("/getTwitterHashtags", getHashtags);
 
 module.exports = router;

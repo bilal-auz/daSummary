@@ -17,6 +17,7 @@ connect_DB();
 const express = require("express");
 const app = express();
 app.use(express.json()); //send/read requests in json format
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 app.get("/", (req, res) => {
   res.send("API is Running");

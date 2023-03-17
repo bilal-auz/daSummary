@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 function ListItem({ provided, value, handleDelete, index, handleChange }) {
   const [toggled, setToggled] = useState(false);
-  const [newValue, setNewValue] = useState(value);
-  const [checked, setChecked] = useState(false);
+  const [newValue, setNewValue] = useState(value.text);
+  const [checked, setChecked] = useState(value.checked);
 
   const toggleInput = () => {
     setToggled(!toggled);
@@ -16,7 +16,7 @@ function ListItem({ provided, value, handleDelete, index, handleChange }) {
     }
 
     if (event.key === "Escape") {
-      setNewValue(value);
+      setNewValue(value.text);
       toggleInput();
     }
   };

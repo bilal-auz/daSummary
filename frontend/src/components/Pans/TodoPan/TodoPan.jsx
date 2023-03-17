@@ -1,78 +1,67 @@
 import React, { useEffect, useState } from "react";
 import DragDropList from "./DragDropList";
+import LoginPan from "./../Login/LoginPan";
+import axios from "axios";
 
 function TodoPan() {
+  const [user, setUser] = useState(null);
+
   const [default_items, setDefault_items] = useState([
-    "Lorem ipsum dolor sit amet consectetur adipisicing",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
+    {
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing",
+      checked: true,
+    },
+    { text: "1", checked: false },
   ]);
 
-  const [loginMode, setLoginMode] = useState(false);
+  const [activeTab, setActiveTab] = useState(1);
 
-  const handleLoginMode = () => {
-    setLoginMode(!loginMode);
+  const handleLoginMode = (tabNum) => {
+    setActiveTab(tabNum);
+  };
+
+  const login = async (params) => {
+    const body = {
+      username: params.username,
+      password: params.password,
+    };
+
+    const { data } = await axios.post("/api/auth/login", body);
+
+    console.log(data.tasks);
+
+    setDefault_items(data.tasks);
+
+    setUser(data.username);
+  };
+
+  const logout = () => {
+    setUser(null);
   };
 
   useEffect(() => {
     console.log("changed");
-  }, [default_items]);
+  }, []);
+
   return (
     <div className="flex flex-col items-center">
       <div className="tabs">
         <a
-          className={"tab tab-lifted " + (!loginMode && "tab-active")}
-          onClick={handleLoginMode}
+          className={"tab tab-lifted " + (activeTab == 1 && "tab-active")}
+          onClick={() => handleLoginMode(1)}
         >
           Tasks
         </a>
         <a
-          className={"tab tab-lifted " + (loginMode && "tab-active")}
-          onClick={handleLoginMode}
+          className={"tab tab-lifted " + (activeTab == 2 && "tab-active")}
+          onClick={() => handleLoginMode(2)}
         >
           Login
         </a>
       </div>
       <div className="weatherCard card text-neutral-content shadow-xl w-auto">
-        {loginMode ? (
-          <div class="card flex-shrink-0 p-7 w-[350px] max-h-[400px] max-w-sm shadow-2xl bg-base-100">
-            <div class="card-body">
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Email</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="email"
-                  class="input input-bordered"
-                />
-              </div>
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Password</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="password"
-                  class="input input-bordered"
-                />
-                <label class="label">
-                  <a href="#" class="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div class="form-control mt-6">
-                <button class="btn btn-primary">Login</button>
-              </div>
-            </div>
-          </div>
+        {activeTab == 2 ? (
+          <LoginPan user={user} login={login} logout={logout} />
         ) : (
           <DragDropList
             default_items={default_items}

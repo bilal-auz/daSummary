@@ -61,7 +61,7 @@ function DragDropList(props) {
               >
                 {props.default_items.map((item, index) => (
                   <Draggable
-                    key={item + index}
+                    key={item.text + index}
                     draggableId={String(index)}
                     index={index}
                   >

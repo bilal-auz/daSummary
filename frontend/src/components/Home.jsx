@@ -49,7 +49,7 @@ function Home() {
         <h1>DaSummary</h1>
       </div>
       <div className="bodyPane flex flex-row flex-wrap justify-center rounded-lg h-full w-full">
-        <div className="leftPane w-[350px]">
+        <div className="leftPane w-[385px]">
           <Weatherpan />
         </div>
         <div className="midPane m-0 w-[350px] flex flex-col justify-between items-center">

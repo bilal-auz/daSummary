@@ -30,22 +30,30 @@ function DragDropList(props) {
     props.setDefault_items(updatedList);
   };
 
+  //updates the list
   const handleChange = (index, newValue) => {
+    // console.log(updatedList);
+
     var updatedList = [...props.default_items];
 
     updatedList[index] = newValue;
 
+    // console.log(updatedList);
+    // return;
     props.setDefault_items(updatedList);
   };
 
   const handleAddTask = () => {
     //if the button clicked/used (means next click should submit the task)
-    if (!addBtnUsed) {
-      props.setDefault_items([
-        "Double click to edit...",
-        ...props.default_items,
-      ]);
-    }
+    // if (!addBtnUsed) {
+    props.setDefault_items([
+      {
+        text: "Double click to edit...",
+        checked: false,
+      },
+      ...props.default_items,
+    ]);
+    // }
   };
 
   return (

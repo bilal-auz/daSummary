@@ -11,7 +11,9 @@ function ListItem({ provided, value, handleDelete, index, handleChange }) {
 
   const onKeyPressed = (event) => {
     if (event.key === "Enter") {
-      handleChange(index, newValue);
+      value.text = newValue;
+
+      handleChange(index, value);
       toggleInput();
     }
 
@@ -25,10 +27,14 @@ function ListItem({ provided, value, handleDelete, index, handleChange }) {
     setNewValue(event.target.value);
   };
 
-  const handleChecked = () => {
+  const handleChecked = async () => {
     //handle checking and update the list in databse if connected
     setChecked(!checked);
+
+    value.checked = !checked;
+    handleChange(index, value);
   };
+
   return (
     <div
       className="item-container flex flex-row items-center justify-start w-auto min-h-8 h-auto mb-2 p-3 rounded bg-[#1e293b] text-smoke"
@@ -51,6 +57,7 @@ function ListItem({ provided, value, handleDelete, index, handleChange }) {
         </p>
       ) : (
         <input
+          title="Press ENTER to save. ESC to cancel"
           type="text"
           value={newValue}
           onChange={onChangeValue}

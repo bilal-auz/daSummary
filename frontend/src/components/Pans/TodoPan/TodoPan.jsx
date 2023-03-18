@@ -8,10 +8,10 @@ function TodoPan() {
 
   const [default_items, setDefault_items] = useState([
     {
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing",
-      checked: true,
+      text: "Double Click to Edit...",
+      checked: false,
     },
-    { text: "1", checked: false },
+    { text: "Old Task", checked: true },
   ]);
 
   const [activeTab, setActiveTab] = useState(1);
@@ -39,9 +39,24 @@ function TodoPan() {
     setUser(null);
   };
 
+  //main function that sends the data to database
+  const handleChange = async () => {
+    //only if the user if logged
+    if (user) {
+      const body = {
+        username: user,
+        tasks: default_items,
+      };
+      const { data } = await axios.put("/api/todo-list/update-tasks", body);
+
+      console.log(data);
+    }
+  };
+
   useEffect(() => {
     console.log("changed");
-  }, []);
+    handleChange();
+  }, [default_items]);
 
   return (
     <div className="flex flex-col items-center">
@@ -56,7 +71,7 @@ function TodoPan() {
           className={"tab tab-lifted " + (activeTab == 2 && "tab-active")}
           onClick={() => handleLoginMode(2)}
         >
-          Login
+          {(user && "Profile") || "Login"}
         </a>
       </div>
       <div className="weatherCard card text-neutral-content shadow-xl w-auto">

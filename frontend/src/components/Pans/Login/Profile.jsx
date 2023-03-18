@@ -3,7 +3,7 @@ import React from "react";
 function Profile({ user, logout }) {
   return (
     <div>
-      <p>{user}</p>
+      <p>Weclome {user}</p>
       <div class="form-control mt-6">
         <button class="btn btn-primary" onClick={logout}>
           logout
